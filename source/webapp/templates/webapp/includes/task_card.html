@@ -1,0 +1,19 @@
+<article class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{% url 'task_detail' task.pk %}" class="text-decoration-none">
+                {{ task.summary }}
+            </a>
+        </h5>
+        <p class="mb-2"><strong>Статус:</strong> {{ task.status.name }}</p>
+        <p class="mb-2">
+            <strong>Типы:</strong>
+            {% for type in task.types.all %}
+                <span class="badge text-bg-secondary">{{ type.name }}</span>
+            {% empty %}
+                <span class="text-muted">Не указаны</span>
+            {% endfor %}
+        </p>
+        <small class="text-muted">Создано: {{ task.created_at|date:"d.m.Y H:i" }}</small>
+    </div>
+</article>
